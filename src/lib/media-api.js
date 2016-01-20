@@ -19,7 +19,12 @@ export const MediaApi = {
     const api = client.resource(apiUrl);
 
     return Rx.Observable.fromPromise(
-      api.follow('search').get({}, {withCredentials: true})
+      api.follow('search').get({
+        length: 100,
+        usageStatus: 'pending',
+        usagePlatform: 'digital',
+        orderBy: '-usages.lastModified'
+      }, {withCredentials: true})
     );
   }
 };
