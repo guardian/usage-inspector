@@ -1,13 +1,13 @@
 import {h} from '@cycle/dom';
 import Rx from 'rx';
 
-import {Query} from '../lib/query.js';
+import {Result} from '../lib/result.js';
 
 import urls from '../config/urls.js';
 
 
 export const TableComponent = () => {
-  const result$ = Query.result$ 
+  const result$ = Result.result$ 
   const viewerUrl = urls["viewer"]
 
   function view() {
