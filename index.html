@@ -4,11 +4,21 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 		<meta name="description" content="Usage Inspector"/>
-		<title>Usage inspector</title>
+
+		<title>Usage Inspector</title>
+
+		<script src="jspm_packages/system.js"></script>
+		<script src="config.js"></script>
+
+		<script>
+      		  System.import("app").catch(function(error) {
+                    setTimeout(function(){ throw error; });
+		  });
+    		</script>
+
 		<link href="main.css" media="all" rel="stylesheet">
 	</head>
 	<body>
 		<div id="main-container"></div>
-		<script src="./dist/main.js"></script>
 	</body>
 </html>
