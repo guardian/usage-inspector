@@ -19,7 +19,6 @@ function view(state) {
 
   return state.map(() =>
     h('div', [
-      h('h1', 'Usage Inspector'),
       table.DOM
     ])
   );
