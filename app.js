@@ -1,35 +1,19 @@
-import Cycle from '@cycle/core';
-import {h, makeDOMDriver} from '@cycle/dom';
 import Rx from 'rx';
+import Ractive from 'ractive';
 
-import {TableComponent} from './components/table.js'
+import {Result} from '../lib/result.js';
+import {Query} from '../lib/query.js';
 
 
-function intent(DOM) {
-  return {};
-}
-
-function model(actions) {
-  return Rx.Observable.just(1)
-}
-
-function view(state) {
-
-  const table = TableComponent();
-
-  return state.map(() =>
-    h('div', [
-      table.DOM
-    ])
-  );
-}
-
-function main({DOM}) {
-  return {
-    DOM: view(model(intent(DOM)))
-  };
-}
-
-Cycle.run(main, {
-  DOM: makeDOMDriver('#main-container')
+var ractive = new Ractive({
+  el: '#container',
+  template: '#template',
+  data: { page: 0, rows: [] }
 });
+
+const result$ = Result.result$;
+
+ractive.observe('page', (n) => Query.setPage(n)); 
+result$.subscribe((r) => ractive.set('rows', r));
+
+Query.setPage(0);
