@@ -19,9 +19,27 @@
 		<link href="main.css" media="all" rel="stylesheet">
 	</head>
 	<body>
+                <script id='template' type='text/ractive'>
+	          <input type="number" name="quantity" min="0" value={{page}}> 
+
+		  <table>
+ 		    {{#rows}}
+		      {{>row}}
+ 		    {{/rows}}
+		  </table>
+
+                  {{#partial row}}
+		    <tr>
+                      <td class="image-row__image"><img src="{{source.secureUrl}}"/></td>
+                      <td>{{id}}</td>
+                      <td>{{metadata.description}}</td>
+                    </tr>
+                  {{/partial}}
+                </script>
+
 		<h1>Usage Inspector</h1>
 		<p>The table below shows the last 100 pending image usages for today.</p>
 
-		<div id="main-container"></div>
+		<div id="container"></div>
 	</body>
 </html>
